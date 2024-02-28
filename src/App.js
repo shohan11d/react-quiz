@@ -14,3 +14,9 @@ export default App;
 function (){
   console.log(dfd)
 }
+}
+
+export default App;
+function (){
+  console.log(dfd)
+}
