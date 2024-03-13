@@ -1,22 +1,9 @@
-import './App.css';
-import WeatherApp from './components/WeatherApp/WeatherApp';
-import 'react-toastify/dist/ReactToastify.css';
+import DateCounter from "./DateCounter";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-     <WeatherApp />
+    <div>
+      <DateCounter />
     </div>
   );
-}
-
-export default App;
-function (){
-  console.log(dfd)
-}
-}
-
-export default App;
-function (){
-  console.log(dfd)
 }
