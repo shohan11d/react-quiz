@@ -1,35 +1,25 @@
-import { useState } from "react";
-
+import { useReducer } from "react";
+function reducer(state, action) {
+  console.log(action);
+  console.log(state);
+  if (action.type === "increment")
+    return { ...state, count: state.count + 1 };
+  if (action.type === "decrement")
+    return { ...state, count: state.count - 1};
+  if (action.type === "reset") return { count: 0, step: 1 };
+  if (action.type === "defineStep") return { ...state, step: action.payload };
+  if (action.type === "defineCount") return { ...state, count: action.payload };
+}
 function DateCounter() {
-  const [count, setCount] = useState(0);
-  const [step, setStep] = useState(1);
-
-  // This mutates the date object.
+  const initialState = { count: 0, step: 1 };
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const { count, step } = state;
   const date = new Date("june 21 2027");
   date.setDate(date.getDate() + count);
 
-  const dec = function () {
-    // setCount((count) => count - 1);
-    setCount((count) => count - step);
-  };
+ 
 
-  const inc = function () {
-    // setCount((count) => count + 1);
-    setCount((count) => count + step);
-  };
 
-  const defineCount = function (e) {
-    setCount(Number(e.target.value));
-  };
-
-  const defineStep = function (e) {
-    setStep(Number(e.target.value));
-  };
-
-  const reset = function () {
-    setCount(0);
-    setStep(1);
-  };
 
   return (
     <div className="counter">
@@ -39,21 +29,29 @@ function DateCounter() {
           min="0"
           max="10"
           value={step}
-          onChange={defineStep}
+          onChange={(e) =>
+            dispatch({ type: "defineStep", payload: Number(e.target.value) })
+          }
         />
         <span>{step}</span>
       </div>
 
       <div>
-        <button onClick={dec}>-</button>
-        <input value={count} onChange={defineCount} />
-        <button onClick={inc}>+</button>
+        <button onClick={() => dispatch({ type: "decrement", payload: 1 })}>
+          -
+        </button>
+        <input value={count} onChange={(e)=>dispatch({type:"defineCount", payload:Number( e.target.value )})} />
+        <button onClick={() => dispatch({ type: "increment", payload: 1 })}>
+          +
+        </button>
       </div>
 
       <p>{date.toDateString()}</p>
 
       <div>
-        <button onClick={reset}>Reset</button>
+        <button onClick={() => dispatch({ type: "reset", payload: 0 })}>
+          Reset
+        </button>
       </div>
     </div>
   );
