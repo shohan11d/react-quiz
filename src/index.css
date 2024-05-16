@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 :root {
   --color-darkest: #343a40;
   --color-dark: #495057;
@@ -14,6 +17,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  
+   
 }
 
 html {
@@ -27,6 +32,8 @@ body {
   color: var(--color-light);
   background-color: var(--color-darkest);
   padding: 3.2rem;
+  
+   
 }
 
 .app {
@@ -34,6 +41,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  
 }
 
 .main {
