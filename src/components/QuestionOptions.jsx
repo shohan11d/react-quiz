@@ -1,9 +1,9 @@
-function QuestionOptions({ questionContainer }) {
+function QuestionOptions({ questionContainer, handleAnswer }) {
   return (
     <div>
       <p>
         {questionContainer.options.map((item, i) => (
-          <button className="text-2xl p-5 m-5" key={questionContainer.id}>
+          <button onClick={()=>handleAnswer(i)} className="text-2xl p-5 m-5" key={Date.now() + i}>
             {i + 1}. {item}
           </button>
         ))}
